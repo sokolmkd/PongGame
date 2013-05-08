@@ -15,13 +15,15 @@ namespace WindowsFormsApplication1
         public bool AI { get; set; }  //Dali e bot
         private Form1 f;
 
-        public Palka(Form1 f,Size Golemina)
+        public Palka(Form1 f,Size Golemina,bool AI)
         {
             Pbox =new PictureBox();
             this.Pbox.Size = Golemina;
             this.Golemina = Golemina;
             this.f = f;
-            AI = false;
+            this.AI = AI;
+            if(!AI)
+                f.KeyDown += new KeyEventHandler(f.Form1_KeyDown);
         }
 
         public Palka() { }
@@ -47,9 +49,44 @@ namespace WindowsFormsApplication1
             }
         }
 
-        public void player2Movement()  
+        public void player2Movement(KeyEventArgs e)  
         {
-            //Funkcija za Player2
+            if (e.KeyCode == Keys.W)
+            {
+                if (Pbox.Location.Y >= Pbox.Height / 2 - 35 && Pbox.Location.Y <= f.ClientSize.Height - Pbox.Height / 2 - 40)
+                {
+                    int playerX = Pbox.Width / 2;
+                    int playerY = Pbox.Location.Y - 20;
+                    Pbox.Location = new Point(playerX, playerY);
+                }
+            }
+            if (e.KeyCode == Keys.S)
+            {
+                if (Pbox.Location.Y >= Pbox.Height / 2 - 40 && Pbox.Location.Y <= f.ClientSize.Height - Pbox.Height / 2 - 60)
+                {
+                    int playerX = Pbox.Width / 2;
+                    int playerY = Pbox.Location.Y + 20;
+                    Pbox.Location = new Point(playerX, playerY);
+                }
+            }
+            if (e.KeyCode == Keys.Up)
+            {
+                if (Pbox.Location.Y >= Pbox.Height / 2 - 35 && Pbox.Location.Y <= f.ClientSize.Height - Pbox.Height / 2 - 40)
+                {
+                    int playerY = Pbox.Location.Y - 20;
+                    Pbox.Location = new Point(Pbox.Location.X, playerY);
+                }
+            }
+            if (e.KeyCode == Keys.Down)
+            {
+                if (Pbox.Location.Y >= Pbox.Height / 2 - 40 && Pbox.Location.Y <= f.ClientSize.Height - Pbox.Height / 2 - 60)
+                {
+
+                    int playerY = Pbox.Location.Y + 20;
+                    Pbox.Location = new Point(Pbox.Location.X, playerY);
+                }
+            }
+           
         }
 
     }

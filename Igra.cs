@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
+using System.IO;
 
 namespace WindowsFormsApplication1
 {
@@ -14,6 +15,8 @@ namespace WindowsFormsApplication1
         public Palka Player2 { get; set; }
         public Topka Topka1 { get; set; }
         private Form1 f;
+        public Label Score1 { get; set; }
+        public Label Score2 { get; set; }
 
 
         public Igra(Form1 f,Palka Player1,Palka Player2,Topka Topka1)
@@ -22,6 +25,17 @@ namespace WindowsFormsApplication1
             this.Topka1 = Topka1;
             this.Player1 = Player1;
             this.Player2 = Player2;
+            Score1 = new Label();
+            Score2 = new Label();
+            Score1.Text = "0";
+            Score2.Text = "0";
+            Score1.Location=new Point(100, 500);
+            Score2.Location = new Point(700, 500);
+            Score1.Font = new Font(Score1.Font.FontFamily, Score1.Font.Size + 5, Score1.Font.Style);
+            Score2.Font = new Font(Score2.Font.FontFamily, Score2.Font.Size + 5, Score2.Font.Style);
+            this.f.Controls.Add(Score1);
+            if(!Player2.AI)
+            this.f.Controls.Add(Score2);
             GameTime = new Timer();//Initializes the Timer
 
             GameTime.Enabled = true;//Enables the Timer
@@ -32,18 +46,33 @@ namespace WindowsFormsApplication1
         }
 
 
+        public void resetBall()
+        {
+            Topka1.Ball.Location = new Point(f.ClientSize.Width / 2 - Topka1.Ball.Width / 2, f.ClientSize.Height / 2 - Topka1.Ball.Height / 2);
+
+        }
+
+        public void GameOver1()
+        {
+
+        }
 
 
+        public void GameOver2()
+        {
+        }
        public void padlleCollision()
         {
             if (Topka1.Ball.Bounds.IntersectsWith(Player2.Pbox.Bounds))
             {
                 Topka1.SpeedX = -Topka1.SpeedX;
+                Score2.Text = (int.Parse(Score2.Text) + 10).ToString();
             }
 
             if (Topka1.Ball.Bounds.IntersectsWith(Player1.Pbox.Bounds))
             {
                 Topka1.SpeedX = -Topka1.SpeedX;
+                Score1.Text = (int.Parse(Score1.Text) + 10).ToString();
             }
 
         }
@@ -56,25 +85,27 @@ namespace WindowsFormsApplication1
            }
            else if (Topka1.Ball.Location.X > f.ClientSize.Width)
            {
-               Topka1.resetBall();
+               GameOver2();
            }
            else if (Topka1.Ball.Location.X < 0)
            {
-               Topka1.resetBall();
+               GameOver1();
            }
        }
-
-        
+      
         void gameTime_Tick(object sender, EventArgs e)
         {
             Topka1.Ball.Location = new Point(Topka1.Ball.Location.X + Topka1.SpeedX, Topka1.Ball.Location.Y + Topka1.SpeedY);
             gameAreaCollisions();//Checks for collisions with the form's border
             padlleCollision();//Checks for collisions with the padlles
-            Player1.playerMovement(Cursor.Position);//Updates the player's position
+
             if (Player2.AI)
+            {
+                Player1.playerMovement(Cursor.Position);//Updates the player's position
                 Player2.aiMovement(Cursor.Position, Topka1);//Updates the ai's position
-            else
-                Player2.player2Movement();
+            }
+
+            
             
             
         }

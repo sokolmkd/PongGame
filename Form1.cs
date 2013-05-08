@@ -11,7 +11,7 @@ namespace WindowsFormsApplication1
 {
     public partial class Form1 : Form
     {
-      
+        private bool BOT;
         Palka Player1,Player2;
         Topka topka;
         Igra igra;
@@ -30,15 +30,32 @@ namespace WindowsFormsApplication1
        
         public Form1()
         {
+            
+            
             InitializeComponent();
+        }
+
+        public Form1(bool BOT) //konstruktor za povikuvanje od prethodna forma single ili multiplayer
+        {
+            this.BOT = BOT; 
+            InitializeComponent();
+        }
+
+        public void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.W || e.KeyCode == Keys.S)
+           Player1.player2Movement(e);
+            if(e.KeyCode==Keys.Up||e.KeyCode==Keys.Down)
+           Player2.player2Movement(e);
+           
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
            
-            Player1 = new Palka(this,sizePlayer);
-            Player2 = new Palka(this,sizeAI);
-            Player2.AI = true;
+            Player1 = new Palka(this,sizePlayer,true);
+            Player2 = new Palka(this,sizeAI,true); //AI true,false
+            
             
           
 

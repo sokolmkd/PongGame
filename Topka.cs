@@ -22,11 +22,7 @@ namespace WindowsFormsApplication1
            Ball.Size = golemina;
        }
 
-      public void resetBall()
-       {
-           //picBoxBall.Location = new Point(ClientSize.Width / 2 - picBoxBall.Width / 2, ClientSize.Height / 2 - picBoxBall.Height / 2);
-
-       }
+     
        
     }
 }
