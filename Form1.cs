@@ -53,8 +53,8 @@ namespace WindowsFormsApplication1
         private void Form1_Load(object sender, EventArgs e)
         {
            
-            Player1 = new Palka(this,sizePlayer,true);
-            Player2 = new Palka(this,sizeAI,true); //AI true,false
+            Player1 = new Palka(this,sizePlayer,false);
+            Player2 = new Palka(this,sizeAI,BOT); //AI true,false
             
             
           
