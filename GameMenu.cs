@@ -18,7 +18,7 @@ namespace WindowsFormsApplication1
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
-
+           
             Form1 forma = new Form1(true);
             this.Hide();
             forma.ShowDialog();
@@ -62,6 +62,16 @@ namespace WindowsFormsApplication1
         private void picb3_MouseUp(object sender, MouseEventArgs e)
         {
             picb3.BorderStyle = BorderStyle.FixedSingle;
+        }
+
+        private void picb5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void GameMenu_Load(object sender, EventArgs e)
+        {
+
         }
 
        

@@ -5,9 +5,12 @@ using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
 using System.IO;
+using System.Resources;
+using System.Runtime.InteropServices;
 
 namespace WindowsFormsApplication1
 {
+  
     class Igra
     {
         public Timer GameTime { get; set; }
@@ -34,14 +37,19 @@ namespace WindowsFormsApplication1
             Score1.Font = new Font(Score1.Font.FontFamily, Score1.Font.Size + 5, Score1.Font.Style);
             Score2.Font = new Font(Score2.Font.FontFamily, Score2.Font.Size + 5, Score2.Font.Style);
             this.f.Controls.Add(Score1);
-            if(!Player2.AI)
-            this.f.Controls.Add(Score2);
+            if (!Player2.AI)
+            {
+                this.f.Controls.Add(Score2);
+                f.KeyDown += new KeyEventHandler(f.Form1_KeyDown);
+            }
             GameTime = new Timer();//Initializes the Timer
 
             GameTime.Enabled = true;//Enables the Timer
             GameTime.Interval = 1;//Set the timer's interval in miliseconds
 
             GameTime.Tick += new EventHandler(gameTime_Tick);//Creates the Timer's Tick event
+
+            
             
         }
 
@@ -55,11 +63,15 @@ namespace WindowsFormsApplication1
         public void GameOver1()
         {
 
+            
+            
+            File.AppendAllText("highscore.dat", Score1.Text+Environment.NewLine);
         }
 
 
         public void GameOver2()
         {
+            File.AppendAllText("highscore.dat", Score2.Text + Environment.NewLine);
         }
        public void padlleCollision()
         {
@@ -67,12 +79,14 @@ namespace WindowsFormsApplication1
             {
                 Topka1.SpeedX = -Topka1.SpeedX;
                 Score2.Text = (int.Parse(Score2.Text) + 10).ToString();
+                new System.Media.SoundPlayer(Properties.Resources.bounce).Play();
             }
 
             if (Topka1.Ball.Bounds.IntersectsWith(Player1.Pbox.Bounds))
             {
                 Topka1.SpeedX = -Topka1.SpeedX;
                 Score1.Text = (int.Parse(Score1.Text) + 10).ToString();
+                new System.Media.SoundPlayer(Properties.Resources.bounce).Play();
             }
 
         }
@@ -82,6 +96,7 @@ namespace WindowsFormsApplication1
            if (Topka1.Ball.Location.Y > f.ClientSize.Height - Topka1.Ball.Height || Topka1.Ball.Location.Y < 0)
            {
                Topka1.SpeedY = -Topka1.SpeedY;
+               new System.Media.SoundPlayer(Properties.Resources.bounce_wall).Play();
            }
            else if (Topka1.Ball.Location.X > f.ClientSize.Width)
            {

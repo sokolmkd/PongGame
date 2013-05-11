@@ -22,8 +22,7 @@ namespace WindowsFormsApplication1
             this.Golemina = Golemina;
             this.f = f;
             this.AI = AI;
-            if(!AI)
-                f.KeyDown += new KeyEventHandler(f.Form1_KeyDown);
+          
         }
 
         public Palka() { }
