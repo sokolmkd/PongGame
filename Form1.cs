@@ -20,12 +20,12 @@ namespace WindowsFormsApplication1
         const int SCREEN_WIDTH = 800;
         const int SCREEN_HEIGHT = 600;
 
-        Size sizePlayer = new Size(25, 100);
-        Size sizeAI = new Size(25, 100);
+        Size sizePlayer = new Size(10, 100);
+        Size sizeAI = new Size(10, 100);
         Size sizeBall = new Size(20, 20);
 
-        int ballSpeedX = 3;
-        int ballSpeedY = 3;
+        int ballSpeedX = 7;
+        int ballSpeedY = 7;
        
        
         public Form1()
@@ -85,11 +85,6 @@ namespace WindowsFormsApplication1
             this.Controls.Add(topka.Ball);
 
             igra = new Igra(this, Player1, Player2, topka);
-        }
-
-        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            igra.GameTime.Stop();
         }
     }
 }

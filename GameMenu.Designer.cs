@@ -114,7 +114,6 @@
             this.Controls.Add(this.pictureBox1);
             this.Name = "GameMenu";
             this.Text = "GameMenu";
-            this.Load += new System.EventHandler(this.GameMenu_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picb5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picb4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picb3)).EndInit();

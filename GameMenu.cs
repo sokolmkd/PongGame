@@ -69,11 +69,6 @@ namespace WindowsFormsApplication1
 
         }
 
-        private void GameMenu_Load(object sender, EventArgs e)
-        {
-
-        }
-
        
     }
 }

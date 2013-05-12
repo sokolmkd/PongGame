@@ -22,7 +22,8 @@ namespace WindowsFormsApplication1
             this.Golemina = Golemina;
             this.f = f;
             this.AI = AI;
-          
+            if(!AI)
+                f.KeyDown += new KeyEventHandler(f.Form1_KeyDown);
         }
 
         public Palka() { }
@@ -40,11 +41,26 @@ namespace WindowsFormsApplication1
             }
         }
 
-        public void aiMovement(Point m,Topka t)
+        public void aiMovement(Point m,Topka t,int predY,int ballSpeedX,int ballSpeedY)
         {
-            if (t.SpeedX > 0)
+            Random r = new Random();
+            int g = r.Next(0, 25);
+            int raz = t.Ball.Location.Y - predY;
+            if (g < 5)
+                raz = 0;
+            //Ako g < 5 togash palkata na AI ostanuva vo mesto so shto ne ja sledi dovolno brzo topkata 
+            if (ballSpeedX > 0)
             {
-                Pbox.Location = new Point(f.ClientSize.Width - (Pbox.Width + Pbox.Width / 2), t.Ball.Location.Y - Pbox.Height / 2);
+
+                if (Pbox.Location.Y > 470 && raz > 0)
+                {
+                    raz = 0;
+                }
+                else if (Pbox.Location.Y < 10 && raz < 0)
+                {
+                    raz = 0;
+                }
+                Pbox.Location = new Point(f.ClientSize.Width - (Pbox.Width + Pbox.Width / 2), Pbox.Location.Y + raz);
             }
         }
 

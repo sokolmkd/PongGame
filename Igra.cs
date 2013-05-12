@@ -5,12 +5,9 @@ using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
 using System.IO;
-using System.Resources;
-using System.Runtime.InteropServices;
 
 namespace WindowsFormsApplication1
 {
-  
     class Igra
     {
         public Timer GameTime { get; set; }
@@ -20,7 +17,7 @@ namespace WindowsFormsApplication1
         private Form1 f;
         public Label Score1 { get; set; }
         public Label Score2 { get; set; }
-
+        public int predY;
 
         public Igra(Form1 f,Palka Player1,Palka Player2,Topka Topka1)
         {
@@ -37,11 +34,8 @@ namespace WindowsFormsApplication1
             Score1.Font = new Font(Score1.Font.FontFamily, Score1.Font.Size + 5, Score1.Font.Style);
             Score2.Font = new Font(Score2.Font.FontFamily, Score2.Font.Size + 5, Score2.Font.Style);
             this.f.Controls.Add(Score1);
-            if (!Player2.AI)
-            {
-                this.f.Controls.Add(Score2);
-                f.KeyDown += new KeyEventHandler(f.Form1_KeyDown);
-            }
+            if(!Player2.AI)
+            this.f.Controls.Add(Score2);
             GameTime = new Timer();//Initializes the Timer
 
             GameTime.Enabled = true;//Enables the Timer
@@ -49,22 +43,23 @@ namespace WindowsFormsApplication1
 
             GameTime.Tick += new EventHandler(gameTime_Tick);//Creates the Timer's Tick event
 
-            
+            if (!File.Exists("highscore.dat"))
+            {
+                File.Create("highscore.dat");
+            }
             
         }
 
 
         public void resetBall()
         {
-            Topka1.Ball.Location = new Point(f.ClientSize.Width / 2 - Topka1.Ball.Width / 2, f.ClientSize.Height / 2 - Topka1.Ball.Height / 2);
-
+           Topka1.Ball.Location = new Point(700, f.ClientSize.Height / 2 - Topka1.Ball.Height / 2);
+           Topka1.SpeedX = - Math.Abs(Topka1.SpeedX);
+           
         }
 
         public void GameOver1()
         {
-
-            
-            
             File.AppendAllText("highscore.dat", Score1.Text+Environment.NewLine);
         }
 
@@ -79,14 +74,12 @@ namespace WindowsFormsApplication1
             {
                 Topka1.SpeedX = -Topka1.SpeedX;
                 Score2.Text = (int.Parse(Score2.Text) + 10).ToString();
-                new System.Media.SoundPlayer(Properties.Resources.bounce).Play();
             }
 
             if (Topka1.Ball.Bounds.IntersectsWith(Player1.Pbox.Bounds))
             {
                 Topka1.SpeedX = -Topka1.SpeedX;
                 Score1.Text = (int.Parse(Score1.Text) + 10).ToString();
-                new System.Media.SoundPlayer(Properties.Resources.bounce).Play();
             }
 
         }
@@ -96,33 +89,31 @@ namespace WindowsFormsApplication1
            if (Topka1.Ball.Location.Y > f.ClientSize.Height - Topka1.Ball.Height || Topka1.Ball.Location.Y < 0)
            {
                Topka1.SpeedY = -Topka1.SpeedY;
-               new System.Media.SoundPlayer(Properties.Resources.bounce_wall).Play();
            }
            else if (Topka1.Ball.Location.X > f.ClientSize.Width)
            {
                GameOver2();
+               resetBall();
            }
            else if (Topka1.Ball.Location.X < 0)
            {
                GameOver1();
+               resetBall();
            }
        }
       
         void gameTime_Tick(object sender, EventArgs e)
         {
+            predY = Topka1.Ball.Location.Y;
             Topka1.Ball.Location = new Point(Topka1.Ball.Location.X + Topka1.SpeedX, Topka1.Ball.Location.Y + Topka1.SpeedY);
             gameAreaCollisions();//Checks for collisions with the form's border
             padlleCollision();//Checks for collisions with the padlles
-
+           
             if (Player2.AI)
             {
                 Player1.playerMovement(Cursor.Position);//Updates the player's position
-                Player2.aiMovement(Cursor.Position, Topka1);//Updates the ai's position
-            }
-
-            
-            
-            
+                Player2.aiMovement(Cursor.Position, Topka1,predY,Topka1.SpeedX,Topka1.SpeedY);//Updates the ai's position
+            }   
         }
         
 
