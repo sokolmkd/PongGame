@@ -17,6 +17,7 @@ namespace WindowsFormsApplication1
         public GameMenu()
         {
             InitializeComponent();
+            
             picbEasy = new PictureBox();
             picbMedium = new PictureBox();
             picbHard = new PictureBox();
@@ -174,6 +175,35 @@ namespace WindowsFormsApplication1
 
         }
 
-       
+        private const int WS_SYSMENU = 0x80000;
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams cp = base.CreateParams;
+                cp.Style &= ~WS_SYSMENU;
+                return cp;
+            }
+        }
+
+        private void picbExit_MouseClick(object sender, MouseEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void picbExit_MouseDown(object sender, MouseEventArgs e)
+        {
+            picbExit.BorderStyle = BorderStyle.Fixed3D;
+        }
+
+        private void picbExit_MouseUp(object sender, MouseEventArgs e)
+        {
+            picbExit.BorderStyle = BorderStyle.FixedSingle;
+        }
+
+        private void picbExit_MouseLeave(object sender, EventArgs e)
+        {
+            picbExit.BorderStyle = BorderStyle.FixedSingle;
+        }
     }
 }

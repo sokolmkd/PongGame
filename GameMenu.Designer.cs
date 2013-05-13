@@ -114,6 +114,10 @@
             this.picbExit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.picbExit.TabIndex = 5;
             this.picbExit.TabStop = false;
+            this.picbExit.MouseClick += new System.Windows.Forms.MouseEventHandler(this.picbExit_MouseClick);
+            this.picbExit.MouseDown += new System.Windows.Forms.MouseEventHandler(this.picbExit_MouseDown);
+            this.picbExit.MouseLeave += new System.EventHandler(this.picbExit_MouseLeave);
+            this.picbExit.MouseUp += new System.Windows.Forms.MouseEventHandler(this.picbExit_MouseUp);
             // 
             // GameMenu
             // 
@@ -127,7 +131,7 @@
             this.Controls.Add(this.picbSinglePlayer);
             this.Controls.Add(this.pictureBox1);
             this.Name = "GameMenu";
-            this.Text = "GameMenu";
+            this.Text = "Pong Game";
             this.Load += new System.EventHandler(this.GameMenu_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picbAbout)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picbHighScore)).EndInit();
