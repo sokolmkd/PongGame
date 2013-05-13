@@ -28,70 +28,72 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.picb5 = new System.Windows.Forms.PictureBox();
-            this.picb4 = new System.Windows.Forms.PictureBox();
-            this.picb3 = new System.Windows.Forms.PictureBox();
-            this.picb2 = new System.Windows.Forms.PictureBox();
+            this.picbAbout = new System.Windows.Forms.PictureBox();
+            this.picbHighScore = new System.Windows.Forms.PictureBox();
+            this.picbTwoPlayers = new System.Windows.Forms.PictureBox();
+            this.picbSinglePlayer = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.picb5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picb4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picb3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picb2)).BeginInit();
+            this.picbExit = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.picbAbout)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picbHighScore)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picbTwoPlayers)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picbSinglePlayer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picbExit)).BeginInit();
             this.SuspendLayout();
             // 
-            // picb5
+            // picbAbout
             // 
-            this.picb5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.picb5.Image = global::WindowsFormsApplication1.Properties.Resources.About_22939;
-            this.picb5.Location = new System.Drawing.Point(63, 371);
-            this.picb5.Name = "picb5";
-            this.picb5.Size = new System.Drawing.Size(302, 52);
-            this.picb5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.picb5.TabIndex = 4;
-            this.picb5.TabStop = false;
-            this.picb5.Click += new System.EventHandler(this.picb5_Click);
+            this.picbAbout.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picbAbout.Image = global::WindowsFormsApplication1.Properties.Resources.About_22939;
+            this.picbAbout.Location = new System.Drawing.Point(63, 365);
+            this.picbAbout.Name = "picbAbout";
+            this.picbAbout.Size = new System.Drawing.Size(302, 52);
+            this.picbAbout.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.picbAbout.TabIndex = 4;
+            this.picbAbout.TabStop = false;
+            this.picbAbout.Click += new System.EventHandler(this.picb5_Click);
             // 
-            // picb4
+            // picbHighScore
             // 
-            this.picb4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.picb4.Image = global::WindowsFormsApplication1.Properties.Resources.High_Score_22913;
-            this.picb4.Location = new System.Drawing.Point(63, 291);
-            this.picb4.Name = "picb4";
-            this.picb4.Size = new System.Drawing.Size(302, 52);
-            this.picb4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.picb4.TabIndex = 3;
-            this.picb4.TabStop = false;
+            this.picbHighScore.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picbHighScore.Image = global::WindowsFormsApplication1.Properties.Resources.High_Score_22913;
+            this.picbHighScore.Location = new System.Drawing.Point(63, 287);
+            this.picbHighScore.Name = "picbHighScore";
+            this.picbHighScore.Size = new System.Drawing.Size(302, 52);
+            this.picbHighScore.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.picbHighScore.TabIndex = 3;
+            this.picbHighScore.TabStop = false;
             // 
-            // picb3
+            // picbTwoPlayers
             // 
-            this.picb3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.picb3.Image = global::WindowsFormsApplication1.Properties.Resources.Two_Players_22802;
-            this.picb3.Location = new System.Drawing.Point(63, 211);
-            this.picb3.Name = "picb3";
-            this.picb3.Size = new System.Drawing.Size(302, 52);
-            this.picb3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.picb3.TabIndex = 2;
-            this.picb3.TabStop = false;
-            this.picb3.Click += new System.EventHandler(this.picb3_Click);
-            this.picb3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.picb3_MouseDown);
-            this.picb3.MouseLeave += new System.EventHandler(this.picb3_MouseLeave);
-            this.picb3.MouseUp += new System.Windows.Forms.MouseEventHandler(this.picb3_MouseUp);
+            this.picbTwoPlayers.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picbTwoPlayers.Image = global::WindowsFormsApplication1.Properties.Resources.Two_Players_22802;
+            this.picbTwoPlayers.Location = new System.Drawing.Point(63, 209);
+            this.picbTwoPlayers.Name = "picbTwoPlayers";
+            this.picbTwoPlayers.Size = new System.Drawing.Size(302, 52);
+            this.picbTwoPlayers.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.picbTwoPlayers.TabIndex = 2;
+            this.picbTwoPlayers.TabStop = false;
+            this.picbTwoPlayers.Click += new System.EventHandler(this.picb3_Click);
+            this.picbTwoPlayers.MouseDown += new System.Windows.Forms.MouseEventHandler(this.picb3_MouseDown);
+            this.picbTwoPlayers.MouseLeave += new System.EventHandler(this.picb3_MouseLeave);
+            this.picbTwoPlayers.MouseUp += new System.Windows.Forms.MouseEventHandler(this.picb3_MouseUp);
             // 
-            // picb2
+            // picbSinglePlayer
             // 
-            this.picb2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.picb2.Image = global::WindowsFormsApplication1.Properties.Resources.Single_Playe_22667;
-            this.picb2.Location = new System.Drawing.Point(63, 131);
-            this.picb2.Name = "picb2";
-            this.picb2.Size = new System.Drawing.Size(302, 52);
-            this.picb2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.picb2.TabIndex = 1;
-            this.picb2.TabStop = false;
-            this.picb2.Click += new System.EventHandler(this.pictureBox2_Click);
-            this.picb2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.picb2_MouseDown);
-            this.picb2.MouseLeave += new System.EventHandler(this.picb2_MouseLeave);
-            this.picb2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.picb2_MouseUp);
+            this.picbSinglePlayer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picbSinglePlayer.Image = global::WindowsFormsApplication1.Properties.Resources.Single_Playe_22667;
+            this.picbSinglePlayer.Location = new System.Drawing.Point(63, 131);
+            this.picbSinglePlayer.Name = "picbSinglePlayer";
+            this.picbSinglePlayer.Size = new System.Drawing.Size(302, 52);
+            this.picbSinglePlayer.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.picbSinglePlayer.TabIndex = 1;
+            this.picbSinglePlayer.TabStop = false;
+            this.picbSinglePlayer.Click += new System.EventHandler(this.pictureBox2_Click);
+            this.picbSinglePlayer.MouseDown += new System.Windows.Forms.MouseEventHandler(this.picb2_MouseDown);
+            this.picbSinglePlayer.MouseLeave += new System.EventHandler(this.picb2_MouseLeave);
+            this.picbSinglePlayer.MouseUp += new System.Windows.Forms.MouseEventHandler(this.picb2_MouseUp);
             // 
             // pictureBox1
             // 
@@ -102,23 +104,37 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
+            // picbExit
+            // 
+            this.picbExit.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picbExit.Image = global::WindowsFormsApplication1.Properties.Resources.Exit_02228;
+            this.picbExit.Location = new System.Drawing.Point(63, 443);
+            this.picbExit.Name = "picbExit";
+            this.picbExit.Size = new System.Drawing.Size(302, 52);
+            this.picbExit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.picbExit.TabIndex = 5;
+            this.picbExit.TabStop = false;
+            // 
             // GameMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(441, 453);
-            this.Controls.Add(this.picb5);
-            this.Controls.Add(this.picb4);
-            this.Controls.Add(this.picb3);
-            this.Controls.Add(this.picb2);
+            this.ClientSize = new System.Drawing.Size(441, 519);
+            this.Controls.Add(this.picbExit);
+            this.Controls.Add(this.picbAbout);
+            this.Controls.Add(this.picbHighScore);
+            this.Controls.Add(this.picbTwoPlayers);
+            this.Controls.Add(this.picbSinglePlayer);
             this.Controls.Add(this.pictureBox1);
             this.Name = "GameMenu";
             this.Text = "GameMenu";
-            ((System.ComponentModel.ISupportInitialize)(this.picb5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picb4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picb3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picb2)).EndInit();
+            this.Load += new System.EventHandler(this.GameMenu_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.picbAbout)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picbHighScore)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picbTwoPlayers)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picbSinglePlayer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picbExit)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -127,9 +143,10 @@
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox picb2;
-        private System.Windows.Forms.PictureBox picb3;
-        private System.Windows.Forms.PictureBox picb4;
-        private System.Windows.Forms.PictureBox picb5;
+        private System.Windows.Forms.PictureBox picbSinglePlayer;
+        private System.Windows.Forms.PictureBox picbTwoPlayers;
+        private System.Windows.Forms.PictureBox picbHighScore;
+        private System.Windows.Forms.PictureBox picbAbout;
+        private System.Windows.Forms.PictureBox picbExit;
     }
 }

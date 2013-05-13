@@ -79,6 +79,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="bin\Debug\highscore.dat" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -103,6 +104,39 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Images\PONG_20563.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HighScore.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bounce.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bounce_wall.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Back_02202.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Easy_01691.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Exit_02228.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Hard_02014.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Medium_01793.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Ninja_02111.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Options_02247.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
