@@ -55,8 +55,8 @@ namespace WindowsFormsApplication1
             picbHard.MouseClick += picbHard_MouseClick;
             picbNinja.MouseClick += picbNinja_MouseClick;
             picbBack.MouseClick += picbBack_MouseClick;
-            
-            
+
+           
         }
 
         void picbBack_MouseClick(object sender, MouseEventArgs e)
@@ -172,20 +172,11 @@ namespace WindowsFormsApplication1
 
         private void GameMenu_Load(object sender, EventArgs e)
         {
+            this.ControlBox = false;
 
         }
 
-        private const int WS_SYSMENU = 0x80000;
-        protected override CreateParams CreateParams
-        {
-            get
-            {
-                CreateParams cp = base.CreateParams;
-                cp.Style &= ~WS_SYSMENU;
-                return cp;
-            }
-        }
-
+        
         private void picbExit_MouseClick(object sender, MouseEventArgs e)
         {
             this.Close();
