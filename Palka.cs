@@ -45,7 +45,7 @@ namespace WindowsFormsApplication1
             Random r = new Random();
             int g = r.Next(0, 25);
             int raz = t.Ball.Location.Y - predY;
-            if (g < 5)
+            if (g < 4)
                 raz = 0;
             //Ako g < 5 togash palkata na AI ostanuva vo mesto so shto ne ja sledi dovolno brzo topkata 
             if (t.SpeedX > 0)

@@ -21,7 +21,7 @@ namespace WindowsFormsApplication1
         public Label Score1 { get; set; }
         public Label Score2 { get; set; }
         public int predY;
-
+        int brojac = 0;
 
         public Igra(Form1 f,Palka Player1,Palka Player2,Topka Topka1)
         {
@@ -77,20 +77,30 @@ namespace WindowsFormsApplication1
 
        public void padlleCollision()
         {
+          
             if (Topka1.Ball.Bounds.IntersectsWith(Player2.Pbox.Bounds))
             {
                 Topka1.SpeedX = -Topka1.SpeedX;
                 Score2.Text = (int.Parse(Score2.Text) + 10).ToString();
                 new System.Media.SoundPlayer(Properties.Resources.bounce).Play();
+                brojac++;
             }
 
             if (Topka1.Ball.Bounds.IntersectsWith(Player1.Pbox.Bounds))
             {
                 Topka1.SpeedX = -Topka1.SpeedX;
-                Score1.Text = (int.Parse(Score1.Text) + 10).ToString();
+                //Score1.Text = (int.Parse(Score1.Text) + 10).ToString();
                 new System.Media.SoundPlayer(Properties.Resources.bounce).Play();
+                brojac++;
             }
+            if (brojac == 3 && Topka1.SpeedX < 16)
+            {
 
+                Score1.Text = Topka1.SpeedX.ToString();
+                Topka1.SpeedX = (int)(Topka1.SpeedX * 1.2);
+                Topka1.SpeedY = (int)(Topka1.SpeedY * 1.2);
+                brojac = 0;
+            }
         }
 
        public void gameAreaCollisions()

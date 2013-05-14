@@ -75,10 +75,10 @@ namespace WindowsFormsApplication1
            
             Player1 = new Palka(this,sizePlayer,false);
             Player2 = new Palka(this,sizeAI,BOT); //AI true,false
-            
-            
-          
 
+
+
+            this.BackgroundImage = Properties.Resources.bg_body;
             this.Width = SCREEN_WIDTH;//sets the Form's Width
             this.Height = SCREEN_HEIGHT;//sets the Form's Height
             this.StartPosition = FormStartPosition.CenterScreen;//opens the form in center of the screen
