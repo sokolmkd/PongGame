@@ -21,10 +21,39 @@ namespace WindowsFormsApplication1
         public Label Score1 { get; set; }
         public Label Score2 { get; set; }
         public int predY;
+        private int broj = 0;
+        public bool ninja = true;
+        private List<PictureBox> lista_ninja;
         int brojac = 0;
-        int predP;
+        private PictureBox bonus;
+        private bool bonus_flag = false;
+        public void dodaj_ninja()
+        {
+           
+            Random r = new Random();
+
+            for (int i = 0; i < 10; i++)
+            {
+                PictureBox p = new PictureBox();
+                p.Size = new Size(20, 60);
+                p.Location = new Point(r.Next(150, 600), r.Next(0, 400));
+                p.BackgroundImage = Properties.Resources.cigli;
+
+                lista_ninja.Add(p);
+            }
+
+            for (int i = 0; i < lista_ninja.Count; i++)
+                f.Controls.Remove(lista_ninja.ElementAt(i));
+
+            for (int i = 0; i < lista_ninja.Count; i++)
+            {
+                f.Controls.Add(lista_ninja.ElementAt(i));
+            }
+
+        }
         public Igra(Form1 f,Palka Player1,Palka Player2,Topka Topka1)
         {
+            lista_ninja = new List<PictureBox>();
             this.f = f;
             this.Topka1 = Topka1;
             this.Player1 = Player1;
@@ -46,13 +75,16 @@ namespace WindowsFormsApplication1
             GameTime = new Timer();//Initializes the Timer
 
             GameTime.Enabled = true;//Enables the Timer
-            GameTime.Interval = 1;//Set the timer's interval in miliseconds
+            GameTime.Interval = 10;//Set the timer's interval in miliseconds
 
             GameTime.Tick += new EventHandler(gameTime_Tick);//Creates the Timer's Tick event
 
             if (!File.Exists("highscore.dat"))
                 File.Create("highscore.dat");
-            
+            if (ninja)
+            {
+                dodaj_ninja();   
+            }
         }
 
 
@@ -60,7 +92,8 @@ namespace WindowsFormsApplication1
         {
             Topka1.Ball.Location = new Point(700, f.ClientSize.Height / 2 - Topka1.Ball.Height / 2);
             Topka1.SpeedX = -Math.Abs(Topka1.SpeedX);
-
+          
+           
         }
 
         public void GameOver1()
@@ -89,7 +122,6 @@ namespace WindowsFormsApplication1
             if (Topka1.Ball.Bounds.IntersectsWith(Player1.Pbox.Bounds))
             {
                 Topka1.SpeedX = -Topka1.SpeedX;
-                
                 //Score1.Text = (int.Parse(Score1.Text) + 10).ToString();
                 new System.Media.SoundPlayer(Properties.Resources.bounce).Play();
                 brojac++;
@@ -125,12 +157,57 @@ namespace WindowsFormsApplication1
       
         void gameTime_Tick(object sender, EventArgs e)
         {
+            broj++;
+            if (bonus_flag)
+            {
+                bonus.Location = new Point(bonus.Location.X - 7, bonus.Location.Y);
+                if(bonus.Bounds.IntersectsWith(Player1.Pbox.Bounds))
+                {
+                    for (int i = 0; i < lista_ninja.Count;i++ )
+                    {
+                        f.Controls.Remove(lista_ninja.ElementAt(i));
+                
+                    }
+                    lista_ninja.Clear();
+                    f.Controls.Remove(bonus);
+                    bonus_flag = false;
+                }
+                if (bonus.Location.X<0)
+                {
+                    f.Controls.Remove(bonus);
+                    bonus_flag = false;
+                }
+            }
+            if (broj == 1000&&ninja)
+            {
+                bonus_flag = true;
+                bonus = new PictureBox();
+                bonus.Size = new Size(30, 30);
+                bonus.BackgroundImage = Properties.Resources._81412_Claw_Hammer;
+                Random r=new Random();
+                bonus.Location = new Point(r.Next(400, 600), r.Next(50, 500));
+                f.Controls.Add(bonus);
+                broj = 0;
+                dodaj_ninja();
+            }
             predY = Topka1.Ball.Location.Y;
-            predP = Player1.Pbox.Location.Y;
             Topka1.Ball.Location = new Point(Topka1.Ball.Location.X + Topka1.SpeedX, Topka1.Ball.Location.Y + Topka1.SpeedY);
             gameAreaCollisions();//Checks for collisions with the form's border
             padlleCollision();//Checks for collisions with the padlles
-
+            if (ninja)
+            {
+                for (int i = 0; i < lista_ninja.Count; i++)
+                {
+                    if (Topka1.Ball.Bounds.IntersectsWith(lista_ninja.ElementAt(i).Bounds))
+                    { 
+                        f.Controls.Remove(lista_ninja.ElementAt(i));
+                        Topka1.SpeedX = -Topka1.SpeedX;
+                        lista_ninja.RemoveAt(i);
+                    }
+  
+                }
+            }
+            
             if (Player2.AI)
             {
                 Player1.playerMovement(Cursor.Position);//Updates the player's position
