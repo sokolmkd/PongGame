@@ -100,9 +100,6 @@
     <None Include="Resources\bounce_wall.wav" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\logo.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Back_02202.gif" />
   </ItemGroup>
   <ItemGroup>
@@ -149,6 +146,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\81412-Claw-Hammer.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

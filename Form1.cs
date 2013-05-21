@@ -15,7 +15,7 @@ namespace WindowsFormsApplication1
         Palka Player1,Player2;
         Topka topka;
         Igra igra;
-       
+       public bool flag;
 
         const int SCREEN_WIDTH = 800;
         const int SCREEN_HEIGHT = 600;
@@ -30,9 +30,9 @@ namespace WindowsFormsApplication1
        
         public Form1()
         {
-            
-            
+                     
             InitializeComponent();
+        
            
             
         }
@@ -47,8 +47,9 @@ namespace WindowsFormsApplication1
             }
         } 
 
-        public Form1(bool BOT,int AISpeed) //konstruktor za povikuvanje od prethodna forma single ili multiplayer
+        public Form1(bool BOT,int AISpeed,bool f=false) //konstruktor za povikuvanje od prethodna forma single ili multiplayer
         {
+            flag = f;
             this.BOT = BOT;
             ballSpeedX = ballSpeedY = AISpeed;
             InitializeComponent();
@@ -78,7 +79,7 @@ namespace WindowsFormsApplication1
 
 
 
-            this.BackgroundImage = Properties.Resources.bg_body;
+         //   this.BackgroundImage = Properties.Resources.bg_body;
             this.Width = SCREEN_WIDTH;//sets the Form's Width
             this.Height = SCREEN_HEIGHT;//sets the Form's Height
             this.StartPosition = FormStartPosition.CenterScreen;//opens the form in center of the screen
@@ -99,10 +100,10 @@ namespace WindowsFormsApplication1
             topka = new Topka(sizeBall,ballSpeedX,ballSpeedY);
             topka.Ball.Location = new Point(ClientSize.Width / 2 - topka.Ball.Width / 2, ClientSize.Height / 2 - topka.Ball.Height / 2);
             //topka.Ball.BackColor = Color.Green;
-            topka.Ball.Image = Properties.Resources.logo;
+           topka.Ball.Image = Properties.Resources.logo;
             this.Controls.Add(topka.Ball);
 
-            igra = new Igra(this, Player1, Player2, topka);
+            igra = new Igra(this, Player1, Player2, topka,flag);
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)

@@ -43,14 +43,29 @@ namespace WindowsFormsApplication1
         public void aiMovement(Point m, Topka t, int predY)
         {
             Random r = new Random();
+
             int g = r.Next(0, 25);
             int raz = t.Ball.Location.Y - predY;
-            if (g < 4)
+            if (g < 4 && !f.flag)
                 raz = 0;
-            //Ako g < 5 togash palkata na AI ostanuva vo mesto so shto ne ja sledi dovolno brzo topkata 
-            if (t.SpeedX > 0)
+           
+
+  //          Ako g < 5 togash palkata na AI ostanuva vo mesto so shto ne ja sledi dovolno brzo topkata 
+            if (t.SpeedX > 0 && !f.flag)
             {
 
+                if (Pbox.Location.Y > 470 && raz > 0)
+                {
+                    raz = 0;
+                }
+                else if (Pbox.Location.Y < 10 && raz < 0)
+                {
+                    raz = 0;
+                }
+                Pbox.Location = new Point(f.ClientSize.Width - (Pbox.Width + Pbox.Width / 2), Pbox.Location.Y + raz);
+            }
+            else
+            {
                 if (Pbox.Location.Y > 470 && raz > 0)
                 {
                     raz = 0;

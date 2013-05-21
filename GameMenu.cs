@@ -69,8 +69,11 @@ namespace WindowsFormsApplication1
 
         void picbNinja_MouseClick(object sender, MouseEventArgs e)
         {
-           
-            
+
+            Form1 forma = new Form1(true, 8,true);
+            this.Hide();
+            forma.ShowDialog();
+            this.Show();
         }
 
         void picbHard_MouseClick(object sender, MouseEventArgs e)
@@ -127,7 +130,8 @@ namespace WindowsFormsApplication1
 
         private void picb3_Click(object sender, EventArgs e)
         {
-            Form1 forma = new Form1(false);
+        
+            Form1 forma = new Form1();
             this.Hide();
             forma.ShowDialog();
             this.Show();

@@ -27,6 +27,7 @@ namespace WindowsFormsApplication1
         int brojac = 0;
         private PictureBox bonus;
         private bool bonus_flag = false;
+
         public void dodaj_ninja()
         {
            
@@ -43,7 +44,7 @@ namespace WindowsFormsApplication1
             }
 
             for (int i = 0; i < lista_ninja.Count; i++)
-                f.Controls.Remove(lista_ninja.ElementAt(i));
+                    f.Controls.Remove(lista_ninja.ElementAt(i));
 
             for (int i = 0; i < lista_ninja.Count; i++)
             {
@@ -51,8 +52,9 @@ namespace WindowsFormsApplication1
             }
 
         }
-        public Igra(Form1 f,Palka Player1,Palka Player2,Topka Topka1)
+        public Igra(Form1 f,Palka Player1,Palka Player2,Topka Topka1,bool nin=false)
         {
+            ninja = nin;
             lista_ninja = new List<PictureBox>();
             this.f = f;
             this.Topka1 = Topka1;
@@ -126,12 +128,12 @@ namespace WindowsFormsApplication1
                 new System.Media.SoundPlayer(Properties.Resources.bounce).Play();
                 brojac++;
             }
-            if (brojac == 3 && Topka1.SpeedX < 16)
+            if (brojac == 4 && Topka1.SpeedX < 12)
             {
 
                 Score1.Text = Topka1.SpeedX.ToString();
-                Topka1.SpeedX = (int)(Topka1.SpeedX * 1.2);
-                Topka1.SpeedY = (int)(Topka1.SpeedY * 1.2);
+                Topka1.SpeedX = (int)(Topka1.SpeedX * 1.1);
+                Topka1.SpeedY = (int)(Topka1.SpeedY * 1.1);
                 brojac = 0;
             }
         }
@@ -178,7 +180,7 @@ namespace WindowsFormsApplication1
                     bonus_flag = false;
                 }
             }
-            if (broj == 1000&&ninja)
+            if (broj == 1000 && ninja)
             {
                 bonus_flag = true;
                 bonus = new PictureBox();
