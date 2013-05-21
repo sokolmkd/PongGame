@@ -29,8 +29,7 @@ namespace WindowsFormsApplication1
 
         public void playerMovement(Point m)
         {
-
-
+           
             if (f.PointToClient(m).Y >= Pbox.Height / 2 && f.PointToClient(m).Y <= f.ClientSize.Height - Pbox.Height / 2)
             {
                 int playerX = Pbox.Width / 2;
@@ -45,7 +44,7 @@ namespace WindowsFormsApplication1
             Random r = new Random();
             int g = r.Next(0, 25);
             int raz = t.Ball.Location.Y - predY;
-            if (g < 4)
+            if (g < 5)
                 raz = 0;
             //Ako g < 5 togash palkata na AI ostanuva vo mesto so shto ne ja sledi dovolno brzo topkata 
             if (t.SpeedX > 0)

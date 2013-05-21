@@ -22,7 +22,7 @@ namespace WindowsFormsApplication1
         public Label Score2 { get; set; }
         public int predY;
         int brojac = 0;
-
+        int predP;
         public Igra(Form1 f,Palka Player1,Palka Player2,Topka Topka1)
         {
             this.f = f;
@@ -89,6 +89,7 @@ namespace WindowsFormsApplication1
             if (Topka1.Ball.Bounds.IntersectsWith(Player1.Pbox.Bounds))
             {
                 Topka1.SpeedX = -Topka1.SpeedX;
+                
                 //Score1.Text = (int.Parse(Score1.Text) + 10).ToString();
                 new System.Media.SoundPlayer(Properties.Resources.bounce).Play();
                 brojac++;
@@ -125,6 +126,7 @@ namespace WindowsFormsApplication1
         void gameTime_Tick(object sender, EventArgs e)
         {
             predY = Topka1.Ball.Location.Y;
+            predP = Player1.Pbox.Location.Y;
             Topka1.Ball.Location = new Point(Topka1.Ball.Location.X + Topka1.SpeedX, Topka1.Ball.Location.Y + Topka1.SpeedY);
             gameAreaCollisions();//Checks for collisions with the form's border
             padlleCollision();//Checks for collisions with the padlles

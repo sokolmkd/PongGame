@@ -11,103 +11,143 @@ namespace WindowsFormsApplication1
 {
     public partial class Form1 : Form
     {
-        private bool BOT;
-        Palka Player1,Player2;
-        Topka topka;
-        Igra igra;
-       
+        
+        int predY;
+        
+        private void resetBall()
+        {
+            predY = picBoxBall.Location.Y;
+            Point tuka = new Point(picBoxBall.Location.X, picBoxBall.Location.Y);
+            if (tuka.X < 0)
+            picBoxBall.Location = new Point(tuka.X + 650, ClientSize.Height / 2 - picBoxBall.Height / 2);
+            else
+                picBoxBall.Location = new Point(tuka.X - 650, ClientSize.Height / 2 - picBoxBall.Height / 2);
+            //Topcheto da se pojavuva od malce po nazad ne od sredina zoshto so golema
+            //brzina mn teshko se fakja 
+        }
+        private void playerMovement()
+        {
+            if (this.PointToClient(MousePosition).Y >= picBoxPlayer.Height / 2 && this.PointToClient(MousePosition).Y <= ClientSize.Height - picBoxPlayer.Height / 2)
+            {
+                int playerX = picBoxPlayer.Width / 2;
+                int playerY = this.PointToClient(MousePosition).Y - picBoxPlayer.Height / 2;
+
+                picBoxPlayer.Location = new Point(playerX, playerY);
+            }
+        }
+        private void aiMovement()
+        {
+            Random r = new Random();
+            int g = r.Next(0, 20);
+           int raz = picBoxBall.Location.Y - predY;
+           if (g < 5)
+               raz = 0;
+            //Ako g < 5 togash palkata na AI ostanuva vo mesto so shto ne ja sledi dovolno brzo topkata 
+            if (ballSpeedX > 0)
+            {
+
+                if (picBoxAI.Location.Y  > 470 && raz > 0)
+                {
+                    raz = 0;
+                }
+                else if (picBoxAI.Location.Y < 10 && raz < 0)
+                {
+                    raz = 0;
+                }
+                picBoxAI.Location = new Point(ClientSize.Width - (picBoxAI.Width + picBoxAI.Width / 2), picBoxAI.Location.Y + raz);
+            }
+        }
+        private void padlleCollision()
+        {
+            if (picBoxBall.Bounds.IntersectsWith(picBoxAI.Bounds))
+            {
+                ballSpeedX = -ballSpeedX;
+            }
+
+            if (picBoxBall.Bounds.IntersectsWith(picBoxPlayer.Bounds))
+            {
+                ballSpeedX = -ballSpeedX;
+            }
+        }
+        void gameTime_Tick(object sender, EventArgs e)
+        {
+           
+            predY = picBoxBall.Location.Y;
+            picBoxBall.Location = new Point(picBoxBall.Location.X + ballSpeedX, picBoxBall.Location.Y + ballSpeedY);
+            gameAreaCollisions();//Checks for collisions with the form's border
+            padlleCollision();//Checks for collisions with the padlles
+            playerMovement();//Updates the player's position
+            aiMovement();//Updates the ai's position
+            
+        }
+        private void gameAreaCollisions()
+        {
+            if (picBoxBall.Location.Y > ClientSize.Height - picBoxBall.Height || picBoxBall.Location.Y < 0)
+            {
+                ballSpeedY = -ballSpeedY;
+            }
+            else if (picBoxBall.Location.X > ClientSize.Width)
+            {
+                resetBall();
+            }
+            else if (picBoxBall.Location.X < 0)
+            {
+                resetBall();
+            }
+        }
+        PictureBox picBoxPlayer, picBoxAI, picBoxBall;
+        Timer gameTime;
 
         const int SCREEN_WIDTH = 800;
         const int SCREEN_HEIGHT = 600;
 
-        Size sizePlayer = new Size(10, 100);
-        Size sizeAI = new Size(10, 100);
-        Size sizeBall = new Size(30, 30);
+        Size sizePlayer = new Size(25, 100);
+        Size sizeAI = new Size(25, 100);
+        Size sizeBall = new Size(20, 20);
 
-        int ballSpeedX=6;
-        int ballSpeedY=6;
-       
-       
+        int ballSpeedX = 2;
+        int ballSpeedY = 10;
+        int gameTimeInterval = 1;
         public Form1()
         {
-            
-            
             InitializeComponent();
-           
+            this.DoubleBuffered = true;
+            
             
         }
-
-        protected override CreateParams CreateParams
-        {
-            get
-            {
-                CreateParams cp = base.CreateParams;
-                cp.ExStyle |= 0x02000000;  // Turn on WS_EX_COMPOSITED
-                return cp;
-            }
-        } 
-
-        public Form1(bool BOT,int AISpeed) //konstruktor za povikuvanje od prethodna forma single ili multiplayer
-        {
-            this.BOT = BOT;
-            ballSpeedX = ballSpeedY = AISpeed;
-            InitializeComponent();
-        }
-
-        public Form1(bool BOT) //konstruktor za povikuvanje od prethodna forma single ili multiplayer
-        {
-            this.BOT = BOT;
-            
-            InitializeComponent();
-        }
-
-        public void Form1_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.W || e.KeyCode == Keys.S)
-           Player1.player2Movement(e);
-            if(e.KeyCode==Keys.Up||e.KeyCode==Keys.Down)
-           Player2.player2Movement(e);
-           
-        }
-
+        
         private void Form1_Load(object sender, EventArgs e)
         {
-           
-            Player1 = new Palka(this,sizePlayer,false);
-            Player2 = new Palka(this,sizeAI,BOT); //AI true,false
+            
+            picBoxPlayer = new PictureBox();//
+            picBoxAI = new PictureBox();//Initializes the PictureBoxes
+            picBoxBall = new PictureBox();//
 
+            gameTime = new Timer();//Initializes the Timer
 
+            gameTime.Enabled = true;//Enables the Timer
+            gameTime.Interval = gameTimeInterval;//Set the timer's interval
 
-            this.BackgroundImage = Properties.Resources.bg_body;
+            gameTime.Tick += new EventHandler(gameTime_Tick);//Creates the Timer's Tick event
+
             this.Width = SCREEN_WIDTH;//sets the Form's Width
             this.Height = SCREEN_HEIGHT;//sets the Form's Height
             this.StartPosition = FormStartPosition.CenterScreen;//opens the form in center of the screen
-         
 
-            Player1.Pbox.Location = new Point(Player1.Pbox.Width / 2, ClientSize.Height / 2 - Player1.Pbox.Height / 2);//sets it's location (centered)
-            Player1.Pbox.BackColor = Color.Blue;
-            this.Controls.Add(Player1.Pbox);
+            picBoxPlayer.Size = sizePlayer;//sets the size of the picturebox
+            picBoxPlayer.Location = new Point(picBoxPlayer.Width / 2, ClientSize.Height / 2 - picBoxPlayer.Height / 2);//sets it's location (centered)
+            picBoxPlayer.BackColor = Color.Blue;//fills the picturebox with a color
+            this.Controls.Add(picBoxPlayer);//adds the picture box to the form
 
+            picBoxAI.Size = sizeAI;
+            picBoxAI.Location = new Point(ClientSize.Width - (picBoxAI.Width + picBoxAI.Width / 2), ClientSize.Height / 2 - picBoxPlayer.Height / 2);
+            picBoxAI.BackColor = Color.Red;
+            this.Controls.Add(picBoxAI);
 
-
-            Player2.Pbox.Location = new Point(ClientSize.Width - (Player2.Pbox.Width + Player2.Pbox.Width / 2), ClientSize.Height / 2 - Player1.Pbox.Height / 2);
-            Player2.Pbox.BackColor = Color.Red;
-            this.Controls.Add(Player2.Pbox);
-
-          
-
-            topka = new Topka(sizeBall,ballSpeedX,ballSpeedY);
-            topka.Ball.Location = new Point(ClientSize.Width / 2 - topka.Ball.Width / 2, ClientSize.Height / 2 - topka.Ball.Height / 2);
-            //topka.Ball.BackColor = Color.Green;
-            topka.Ball.Image = Properties.Resources.logo;
-            this.Controls.Add(topka.Ball);
-
-            igra = new Igra(this, Player1, Player2, topka);
-        }
-
-        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            igra.GameTime.Stop();
+            picBoxBall.Size = sizeBall;
+            picBoxBall.Location = new Point(ClientSize.Width / 2 - picBoxBall.Width / 2, ClientSize.Height / 2 - picBoxBall.Height / 2);
+            picBoxBall.BackColor = Color.Green;
+            this.Controls.Add(picBoxBall);
         }
     }
 }
