@@ -15,50 +15,29 @@ namespace WindowsFormsApplication1
         Palka Player1,Player2;
         Topka topka;
         Igra igra;
-       public bool flag;
+       
 
         const int SCREEN_WIDTH = 800;
         const int SCREEN_HEIGHT = 600;
 
         Size sizePlayer = new Size(10, 100);
         Size sizeAI = new Size(10, 100);
-        Size sizeBall = new Size(30, 30);
+        Size sizeBall = new Size(20, 20);
 
-        int ballSpeedX=6;
-        int ballSpeedY=6;
+        int ballSpeedX = 7;
+        int ballSpeedY = 7;
        
        
         public Form1()
         {
-                     
-            InitializeComponent();
-        
-           
             
-        }
-
-        protected override CreateParams CreateParams
-        {
-            get
-            {
-                CreateParams cp = base.CreateParams;
-                cp.ExStyle |= 0x02000000;  // Turn on WS_EX_COMPOSITED
-                return cp;
-            }
-        } 
-
-        public Form1(bool BOT,int AISpeed,bool f=false) //konstruktor za povikuvanje od prethodna forma single ili multiplayer
-        {
-            flag = f;
-            this.BOT = BOT;
-            ballSpeedX = ballSpeedY = AISpeed;
+            
             InitializeComponent();
         }
 
         public Form1(bool BOT) //konstruktor za povikuvanje od prethodna forma single ili multiplayer
         {
-            this.BOT = BOT;
-            
+            this.BOT = BOT; 
             InitializeComponent();
         }
 
@@ -70,16 +49,16 @@ namespace WindowsFormsApplication1
            Player2.player2Movement(e);
            
         }
-        
+
         private void Form1_Load(object sender, EventArgs e)
         {
            
             Player1 = new Palka(this,sizePlayer,false);
             Player2 = new Palka(this,sizeAI,BOT); //AI true,false
+            
+            
+          
 
-
-
-         //   this.BackgroundImage = Properties.Resources.bg_body;
             this.Width = SCREEN_WIDTH;//sets the Form's Width
             this.Height = SCREEN_HEIGHT;//sets the Form's Height
             this.StartPosition = FormStartPosition.CenterScreen;//opens the form in center of the screen
@@ -95,20 +74,17 @@ namespace WindowsFormsApplication1
             Player2.Pbox.BackColor = Color.Red;
             this.Controls.Add(Player2.Pbox);
 
-          
+            //picBoxBall.Size = sizeBall;
+          //  picBoxBall.Location = new Point(ClientSize.Width / 2 - picBoxBall.Width / 2, ClientSize.Height / 2 - picBoxBall.Height / 2);
+          //  picBoxBall.BackColor = Color.Green;
+          //  this.Controls.Add(picBoxBall);
 
             topka = new Topka(sizeBall,ballSpeedX,ballSpeedY);
             topka.Ball.Location = new Point(ClientSize.Width / 2 - topka.Ball.Width / 2, ClientSize.Height / 2 - topka.Ball.Height / 2);
-            //topka.Ball.BackColor = Color.Green;
-           topka.Ball.Image = Properties.Resources.logo;
+            topka.Ball.BackColor = Color.Green;
             this.Controls.Add(topka.Ball);
 
-            igra = new Igra(this, Player1, Player2, topka,flag);
-        }
-
-        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            igra.GameTime.Stop();
+            igra = new Igra(this, Player1, Player2, topka);
         }
     }
 }

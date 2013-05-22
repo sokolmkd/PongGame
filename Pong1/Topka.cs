@@ -12,7 +12,7 @@ namespace WindowsFormsApplication1
        public int SpeedX { get; set; }
        public int SpeedY { get; set; }
        public PictureBox Ball { get; set; }
-       
+       private Form1 f;
 
        public Topka(Size golemina,int X,int Y)
        {

@@ -60,30 +60,9 @@ namespace WindowsFormsApplication1.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap _81412_Claw_Hammer {
-            get {
-                object obj = ResourceManager.GetObject("_81412_Claw_Hammer", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         internal static System.Drawing.Bitmap About_22939 {
             get {
                 object obj = ResourceManager.GetObject("About_22939", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap Anime_skull {
-            get {
-                object obj = ResourceManager.GetObject("Anime_skull", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap Back_02202 {
-            get {
-                object obj = ResourceManager.GetObject("Back_02202", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -95,93 +74,9 @@ namespace WindowsFormsApplication1.Properties {
             }
         }
         
-        internal static System.IO.UnmanagedMemoryStream bounce {
-            get {
-                return ResourceManager.GetStream("bounce", resourceCulture);
-            }
-        }
-        
-        internal static System.IO.UnmanagedMemoryStream bounce_wall {
-            get {
-                return ResourceManager.GetStream("bounce_wall", resourceCulture);
-            }
-        }
-        
-        internal static System.Drawing.Bitmap cigli {
-            get {
-                object obj = ResourceManager.GetObject("cigli", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap Easy_01691 {
-            get {
-                object obj = ResourceManager.GetObject("Easy_01691", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap Exit_02228 {
-            get {
-                object obj = ResourceManager.GetObject("Exit_02228", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap Hard_02014 {
-            get {
-                object obj = ResourceManager.GetObject("Hard_02014", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap heinekens {
-            get {
-                object obj = ResourceManager.GetObject("heinekens", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         internal static System.Drawing.Bitmap High_Score_22913 {
             get {
                 object obj = ResourceManager.GetObject("High_Score_22913", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string HighScore {
-            get {
-                return ResourceManager.GetString("HighScore", resourceCulture);
-            }
-        }
-        
-        internal static System.Drawing.Bitmap logo {
-            get {
-                object obj = ResourceManager.GetObject("logo", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap Medium_01793 {
-            get {
-                object obj = ResourceManager.GetObject("Medium_01793", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap Ninja_02111 {
-            get {
-                object obj = ResourceManager.GetObject("Ninja_02111", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap Options_02247 {
-            get {
-                object obj = ResourceManager.GetObject("Options_02247", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
