@@ -60,7 +60,6 @@ namespace WindowsFormsApplication1
             this.BOT = BOT;
             
             InitializeComponent();
-            this.DoubleBuffered = true;
         }
 
         public void Form1_KeyDown(object sender, KeyEventArgs e)
@@ -75,12 +74,12 @@ namespace WindowsFormsApplication1
         private void Form1_Load(object sender, EventArgs e)
         {
            
-            Player1 = new Palka(this,sizePlayer,false,flag);
-            Player2 = new Palka(this,sizeAI,BOT,flag); //AI true,false
+            Player1 = new Palka(this,sizePlayer,false);
+            Player2 = new Palka(this,sizeAI,BOT); //AI true,false
 
 
 
-            this.BackgroundImage = Properties.Resources.bg_body;
+         //   this.BackgroundImage = Properties.Resources.bg_body;
             this.Width = SCREEN_WIDTH;//sets the Form's Width
             this.Height = SCREEN_HEIGHT;//sets the Form's Height
             this.StartPosition = FormStartPosition.CenterScreen;//opens the form in center of the screen
@@ -100,8 +99,8 @@ namespace WindowsFormsApplication1
 
             topka = new Topka(sizeBall,ballSpeedX,ballSpeedY);
             topka.Ball.Location = new Point(ClientSize.Width / 2 - topka.Ball.Width / 2, ClientSize.Height / 2 - topka.Ball.Height / 2);
-           
-           //topka.Ball.Image = Properties.Resources.logo;
+            //topka.Ball.BackColor = Color.Green;
+           topka.Ball.Image = Properties.Resources.logo;
             this.Controls.Add(topka.Ball);
 
             igra = new Igra(this, Player1, Player2, topka,flag);

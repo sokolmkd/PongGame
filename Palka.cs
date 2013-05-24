@@ -14,11 +14,9 @@ namespace WindowsFormsApplication1
         public Size Golemina { get; set; }
         public bool AI { get; set; }  //Dali e bot
         private Form1 f;
-        private bool ninja;
 
-        public Palka(Form1 f,Size Golemina,bool AI,bool n)
+        public Palka(Form1 f,Size Golemina,bool AI)
         {
-            ninja = n;
             Pbox =new PictureBox();
             this.Pbox.Size = Golemina;
             this.Golemina = Golemina;
@@ -48,12 +46,12 @@ namespace WindowsFormsApplication1
 
             int g = r.Next(0, 25);
             int raz = t.Ball.Location.Y - predY;
-            if (g < 4 && !ninja)
+            if (g < 4 && !f.flag)
                 raz = 0;
            
 
   //          Ako g < 5 togash palkata na AI ostanuva vo mesto so shto ne ja sledi dovolno brzo topkata 
-            if (t.SpeedX > 0 && !ninja)
+            if (t.SpeedX > 0 && !f.flag)
             {
 
                 if (Pbox.Location.Y > 470 && raz > 0)
@@ -66,7 +64,7 @@ namespace WindowsFormsApplication1
                 }
                 Pbox.Location = new Point(f.ClientSize.Width - (Pbox.Width + Pbox.Width / 2), Pbox.Location.Y + raz);
             }
-            else if(ninja)
+            else
             {
                 if (Pbox.Location.Y > 470 && raz > 0)
                 {

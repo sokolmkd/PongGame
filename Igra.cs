@@ -30,9 +30,6 @@ namespace WindowsFormsApplication1
         private int brojac2 = 0;
         private bool skull = false;
         private bool zgolemuvanje = false;
-        private int zivoti = 5;
-        private bool izgubi = false;
-        Label l;
         public void dodaj_ninja()
         {
            
@@ -59,10 +56,6 @@ namespace WindowsFormsApplication1
         }
         public Igra(Form1 f,Palka Player1,Palka Player2,Topka Topka1,bool nin=false)
         {
-            l = new Label();
-            l.Text = "Zivoti:" + zivoti;
-            l.BackColor = Color.Transparent;
-            f.Controls.Add(l); 
             ninja = nin;
             lista_ninja = new List<PictureBox>();
             this.f = f;
@@ -86,7 +79,7 @@ namespace WindowsFormsApplication1
             GameTime = new Timer();//Initializes the Timer
 
             GameTime.Enabled = true;//Enables the Timer
-            GameTime.Interval =10;//Set the timer's interval in miliseconds
+            GameTime.Interval = 10;//Set the timer's interval in miliseconds
 
             GameTime.Tick += new EventHandler(gameTime_Tick);//Creates the Timer's Tick event
 
@@ -101,26 +94,16 @@ namespace WindowsFormsApplication1
 
         public void resetBall()
         {
-            zivoti--;
-            l.Text = "Zivoti:" + zivoti;
             Topka1.Ball.Location = new Point(700, f.ClientSize.Height / 2 - Topka1.Ball.Height / 2);
             Topka1.SpeedX = -Math.Abs(Topka1.SpeedX);
-            if (zivoti == 0)
-            {
-                izgubi = true;
-                GameOver1();
-                f.Close();
-                
-            }
+          
            
         }
 
         public void GameOver1()
         {
-            MessageBox.Show("IZGUBI!! Score:" + Score1.Text);
-         
+ 
             File.AppendAllText("highscore.dat", Score1.Text+Environment.NewLine);
-            f.Close();
         }
 
 
@@ -135,7 +118,7 @@ namespace WindowsFormsApplication1
             if (Topka1.Ball.Bounds.IntersectsWith(Player2.Pbox.Bounds))
             {
                 Topka1.SpeedX = -Topka1.SpeedX;
-               // Score2.Text = (int.Parse(Score2.Text) + 10).ToString();
+                Score2.Text = (int.Parse(Score2.Text) + 10).ToString();
                 new System.Media.SoundPlayer(Properties.Resources.bounce).Play();
                 brojac++;
             }
@@ -143,7 +126,7 @@ namespace WindowsFormsApplication1
             if (Topka1.Ball.Bounds.IntersectsWith(Player1.Pbox.Bounds))
             {
                 Topka1.SpeedX = -Topka1.SpeedX;
-                Score1.Text = (int.Parse(Score1.Text) + 10).ToString();
+                //Score1.Text = (int.Parse(Score1.Text) + 10).ToString();
                 new System.Media.SoundPlayer(Properties.Resources.bounce).Play();
                 brojac++;
                 
@@ -151,7 +134,7 @@ namespace WindowsFormsApplication1
             if (brojac == 4 && Topka1.SpeedX < 12)
             {
 
-                //Score1.Text = Topka1.SpeedX.ToString();
+                Score1.Text = Topka1.SpeedX.ToString();
                 Topka1.SpeedX = (int)(Topka1.SpeedX * 1.1);
                 Topka1.SpeedY = (int)(Topka1.SpeedY * 1.1);
                 brojac = 0;
@@ -179,112 +162,108 @@ namespace WindowsFormsApplication1
       
         void gameTime_Tick(object sender, EventArgs e)
         {
-           
-            if (izgubi)
-            { }
-            else
+            
+            broj++;
+            brojac2++;
+            if (bonus_flag)
             {
-                broj++;
-                brojac2++;
-                if (bonus_flag)
+                bonus.Location = new Point(bonus.Location.X - 7, bonus.Location.Y);
+                if(bonus.Bounds.IntersectsWith(Player1.Pbox.Bounds))
                 {
-                    bonus.Location = new Point(bonus.Location.X - 7, bonus.Location.Y);
-                    if (bonus.Bounds.IntersectsWith(Player1.Pbox.Bounds))
+                    if (skull)
                     {
-                        if (skull)
-                        {
-                            Player1.Pbox.Height = 55;
-                        }
-                        else if (zgolemuvanje)
-                        {
-                            Player1.Pbox.Height = 130;
-                        }
-                        else
-                        {
-                            for (int i = 0; i < lista_ninja.Count; i++)
-                            {
-                                f.Controls.Remove(lista_ninja.ElementAt(i));
-
-                            }
-                            lista_ninja.Clear();
-                        }
-                        f.Controls.Remove(bonus);
-                        bonus_flag = false;
+                        Player1.Pbox.Height = 55;
                     }
-                    if (bonus.Location.X < 0)
+                    else if(zgolemuvanje)
                     {
-                        f.Controls.Remove(bonus);
-                        bonus_flag = false;
+                    Player1.Pbox.Height=130;
                     }
-                }
-                if (broj == 1000 && ninja)
-                {
-                    bonus_flag = true;
-                    bonus = new PictureBox();
-                    bonus.Size = new Size(30, 30);
-                    bonus.BackgroundImage = Properties.Resources._81412_Claw_Hammer;
-                    Random r = new Random();
-                    bonus.Location = new Point(r.Next(400, 600), r.Next(50, 500));
-                    f.Controls.Add(bonus);
-                    broj = 0;
-                    dodaj_ninja();
-                    skull = false;
-                    zgolemuvanje = false;
-                }
-                if (brojac2 == 500 && ninja)
-                {
-                    bonus_flag = true;
-                    bonus = new PictureBox();
-                    bonus.Size = new Size(30, 30);
-                    bonus.BackgroundImage = Properties.Resources.Anime_skull;
-                    Random r = new Random();
-                    bonus.Location = new Point(r.Next(400, 600), r.Next(50, 500));
-                    f.Controls.Add(bonus);
-                    broj = 0;
-                    dodaj_ninja();
-                    skull = true;
-                    zgolemuvanje = false;
-                }
-                if (brojac2 == 1700 && ninja)
-                {
-                    bonus_flag = true;
-                    bonus = new PictureBox();
-                    bonus.Size = new Size(30, 30);
-                    bonus.BackgroundImage = Properties.Resources.heinekens;
-                    Random r = new Random();
-                    bonus.Location = new Point(r.Next(400, 600), r.Next(50, 500));
-                    f.Controls.Add(bonus);
-                    broj = 0;
-                    dodaj_ninja();
-                    zgolemuvanje = true;
-                }
-                predY = Topka1.Ball.Location.Y;
-                Topka1.Ball.Location = new Point(Topka1.Ball.Location.X + Topka1.SpeedX, Topka1.Ball.Location.Y + Topka1.SpeedY);
-                gameAreaCollisions();//Checks for collisions with the form's border
-                padlleCollision();//Checks for collisions with the padlles
-                if (ninja)
-                {
-                    for (int i = 0; i < lista_ninja.Count; i++)
+                    else
                     {
-                        if (Topka1.Ball.Bounds.IntersectsWith(lista_ninja.ElementAt(i).Bounds))
+                        for (int i = 0; i < lista_ninja.Count; i++)
                         {
                             f.Controls.Remove(lista_ninja.ElementAt(i));
-                            Topka1.SpeedX = -Topka1.SpeedX;
-                            lista_ninja.RemoveAt(i);
+
                         }
-
+                        lista_ninja.Clear();
                     }
+                    f.Controls.Remove(bonus);
+                    bonus_flag = false;
                 }
-
-                if (Player2.AI)
+                if (bonus.Location.X<0)
                 {
-                    Player1.playerMovement(Cursor.Position);//Updates the player's position
-                    Player2.aiMovement(Cursor.Position, Topka1, predY);//Updates the ai's position
+                    f.Controls.Remove(bonus);
+                    bonus_flag = false;
                 }
-
-
-
             }
+            if (broj == 1000 && ninja)
+            {
+                bonus_flag = true;
+                bonus = new PictureBox();
+                bonus.Size = new Size(30, 30);
+                bonus.BackgroundImage = Properties.Resources._81412_Claw_Hammer;
+                Random r=new Random();
+                bonus.Location = new Point(r.Next(400, 600), r.Next(50, 500));
+                f.Controls.Add(bonus);
+                broj = 0;
+                dodaj_ninja();
+                skull = false;
+                zgolemuvanje=false;
+            }
+            if (brojac2 == 500&& ninja)
+            {
+                bonus_flag = true;
+                bonus = new PictureBox();
+                bonus.Size = new Size(30, 30);
+                bonus.BackgroundImage = Properties.Resources.Anime_skull;
+                Random r = new Random();
+                bonus.Location = new Point(r.Next(400, 600), r.Next(50, 500));
+                f.Controls.Add(bonus);
+                broj = 0;
+                dodaj_ninja();
+                skull = true;
+                zgolemuvanje = false;
+            }
+            if (brojac2 == 1700 && ninja)
+            {
+                bonus_flag = true;
+                bonus = new PictureBox();
+                bonus.Size = new Size(30, 30);
+                bonus.BackgroundImage = Properties.Resources.heinekens;
+                Random r = new Random();
+                bonus.Location = new Point(r.Next(400, 600), r.Next(50, 500));
+                f.Controls.Add(bonus);
+                broj = 0;
+                dodaj_ninja();
+                zgolemuvanje = true;
+            }
+            predY = Topka1.Ball.Location.Y;
+            Topka1.Ball.Location = new Point(Topka1.Ball.Location.X + Topka1.SpeedX, Topka1.Ball.Location.Y + Topka1.SpeedY);
+            gameAreaCollisions();//Checks for collisions with the form's border
+            padlleCollision();//Checks for collisions with the padlles
+            if (ninja)
+            {
+                for (int i = 0; i < lista_ninja.Count; i++)
+                {
+                    if (Topka1.Ball.Bounds.IntersectsWith(lista_ninja.ElementAt(i).Bounds))
+                    { 
+                        f.Controls.Remove(lista_ninja.ElementAt(i));
+                        Topka1.SpeedX = -Topka1.SpeedX;
+                        lista_ninja.RemoveAt(i);
+                    }
+  
+                }
+            }
+            
+            if (Player2.AI)
+            {
+                Player1.playerMovement(Cursor.Position);//Updates the player's position
+                Player2.aiMovement(Cursor.Position, Topka1,predY);//Updates the ai's position
+            }
+
+            
+            
+            
         }
         
 

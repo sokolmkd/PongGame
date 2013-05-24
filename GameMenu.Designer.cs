@@ -64,7 +64,6 @@
             this.picbHighScore.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.picbHighScore.TabIndex = 3;
             this.picbHighScore.TabStop = false;
-            this.picbHighScore.Click += new System.EventHandler(this.picbHighScore_Click);
             // 
             // picbTwoPlayers
             // 
