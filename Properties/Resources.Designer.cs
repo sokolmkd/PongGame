@@ -88,6 +88,13 @@ namespace WindowsFormsApplication1.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap beer {
+            get {
+                object obj = ResourceManager.GetObject("beer", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap bg_body {
             get {
                 object obj = ResourceManager.GetObject("bg_body", resourceCulture);
@@ -131,13 +138,6 @@ namespace WindowsFormsApplication1.Properties {
         internal static System.Drawing.Bitmap Hard_02014 {
             get {
                 object obj = ResourceManager.GetObject("Hard_02014", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap heinekens {
-            get {
-                object obj = ResourceManager.GetObject("heinekens", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

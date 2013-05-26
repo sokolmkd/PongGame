@@ -14,15 +14,25 @@ namespace WindowsFormsApplication1
         public Izrabotile()
         {
             InitializeComponent();
-            label1.Font = new Font("Arial", 25,FontStyle.Italic);
-            label2.Font = new Font("Arial", 15);
-            label3.Font = new Font("Arial", 15);
-            label4.Font = new Font("Arial", 15);
+            this.BackColor = Color.DarkCyan;
+            label6.Text = "Single Player :" + Environment.NewLine + 
+                "Тука можете да бирате три нивоа на тежина и ninja mode"
+                + Environment.NewLine+"Ninja mode :" + Environment.NewLine + 
+                "Тука можете да пробате колку време ќе издржите против ботот."
+                + Environment.NewLine + "Тој е непобедлив. Можете да земете бонуси за големина на палка и за рушење блокови."
+                +Environment.NewLine+"MultiPlayer :" + Environment.NewLine + "Во овој мод можете да играте со друг играч."
+                + Environment.NewLine + "Движењата на левата палка се со помош на W и S, а на десната со Up и Down";
         }
 
         private void label1_Click(object sender, EventArgs e)
         {
             
         }
+
+        private void Izrabotile_Load(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

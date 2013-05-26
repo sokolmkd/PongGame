@@ -46,6 +46,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Izrabotile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Izrabotile.Designer.cs">
+      <DependentUpon>Izrabotile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OvalPictureBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -73,6 +82,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GameMenu.resx">
       <DependentUpon>GameMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Izrabotile.resx">
+      <DependentUpon>Izrabotile.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -155,6 +167,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\heinekens.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\beer.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

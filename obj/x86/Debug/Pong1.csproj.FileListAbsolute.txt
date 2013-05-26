@@ -1,0 +1,11 @@
+C:\Users\Sokol\Desktop\folders\PongGame-master (1)\PongGame-master\bin\Debug\Pong1.exe
+C:\Users\Sokol\Desktop\folders\PongGame-master (1)\PongGame-master\bin\Debug\Pong1.pdb
+C:\Users\Sokol\Desktop\folders\PongGame-master (1)\PongGame-master\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Sokol\Desktop\folders\PongGame-master (1)\PongGame-master\obj\x86\Debug\WindowsFormsApplication1.Form1.resources
+C:\Users\Sokol\Desktop\folders\PongGame-master (1)\PongGame-master\obj\x86\Debug\WindowsFormsApplication1.GameMenu.resources
+C:\Users\Sokol\Desktop\folders\PongGame-master (1)\PongGame-master\obj\x86\Debug\WindowsFormsApplication1.Izrabotile.resources
+C:\Users\Sokol\Desktop\folders\PongGame-master (1)\PongGame-master\obj\x86\Debug\WindowsFormsApplication1.Properties.Resources.resources
+C:\Users\Sokol\Desktop\folders\PongGame-master (1)\PongGame-master\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\Sokol\Desktop\folders\PongGame-master (1)\PongGame-master\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\Sokol\Desktop\folders\PongGame-master (1)\PongGame-master\obj\x86\Debug\Pong1.exe
+C:\Users\Sokol\Desktop\folders\PongGame-master (1)\PongGame-master\obj\x86\Debug\Pong1.pdb

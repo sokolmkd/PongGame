@@ -171,7 +171,8 @@ namespace WindowsFormsApplication1
 
         private void picb5_Click(object sender, EventArgs e)
         {
-
+            Izrabotile forms = new Izrabotile();
+            forms.Show();
         }
 
         private void GameMenu_Load(object sender, EventArgs e)
@@ -199,6 +200,41 @@ namespace WindowsFormsApplication1
         private void picbExit_MouseLeave(object sender, EventArgs e)
         {
             picbExit.BorderStyle = BorderStyle.FixedSingle;
+        }
+
+        private void picbHighScore_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                List<int> lista = new List<int>();
+                string[] lines = System.IO.File.ReadAllLines("highscore.dat");
+                string s = "Top 10 :";
+                foreach (string line in lines)
+                {
+                    int broj;
+                    if (Int32.TryParse(line, out broj))
+                    {
+
+                        lista.Add(broj);
+                    }
+                    else
+                    {
+                        broj = 0;
+                        lista.Add(broj);
+                    }
+                }
+                lista.Sort();
+                for (int i = lista.Count - 1; i > lista.Count - 10; i--)
+                {
+                    int broj = lista.ElementAt(i);
+                    s = s + "\n" + broj;
+                }
+
+                MessageBox.Show(s, "Highscores");
+            }
+            catch (Exception r) {
+                MessageBox.Show("Nemate dovolno igri za da ima HighScore");
+            }
         }
     }
 }

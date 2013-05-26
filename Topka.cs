@@ -18,7 +18,7 @@ namespace WindowsFormsApplication1
        {
            SpeedX = X;
            SpeedY = Y;
-           Ball = new PictureBox();
+           Ball = new OvalPictureBox();
            Ball.Size = golemina;
        }
 
