@@ -13,11 +13,96 @@
 * bool AI - проверка дали е бот за соодветно активирање на методите 
 
 Методи:
-* void playerMovement(Point m) – Придвижување на палката вертикално во однос на Y позицијата на којашто моментално се наоѓа маусот
-* void aiMovement(Point m, Topka t, int predY,int ballSpeedX, int BallSpeedY) - движење на ботот: Оваа функција го дефинира движењето на ботот кога играме Single Player.Функцијата прима 5 аргументи, Точката сегашна, у-координата на претходната позиција , брзината на топката и топчето. Најпрво генерираме еден рандом број кој произволно е земен да биде во опсег од 0 до 25. Имаме променлива raz која ја ставаме да биде разликата помеѓу сегашната у-координата и претходната. Доколку бројот кој го генериравме рандом биде под 5 тогаш оваа разлика станува нула и со тоа поместувањето на палката во овој gameTick ќе биде нула. Тоа ни овозможува доколку имаме среќа и знаење да го победиме ботот. Кодот под ова вклучува flag само за да провериме доколку е нинџа мод  ботот да биде непобедлив.
+*  public void playerMovement(Point m)
+        {
+
+
+            if (f.PointToClient(m).Y >= Pbox.Height / 2 && f.PointToClient(m).Y <= f.ClientSize.Height - Pbox.Height / 2)
+            {
+                int playerX = Pbox.Width / 2;
+                int playerY = f.PointToClient(m).Y - Pbox.Height / 2;
+
+                Pbox.Location = new Point(playerX, playerY);
+            }
+        }
+* public void aiMovement(Point m, Topka t, int predY)
+        {
+            Random r = new Random();
+
+            int g = r.Next(0, 25);
+            int raz = t.Ball.Location.Y - predY;
+            if (g < 5 && !ninja)
+                raz = 0;
+           
+
+  //          Ako g < 5 togash palkata na AI ostanuva vo mesto so shto ne ja sledi dovolno brzo topkata 
+            if (t.SpeedX > 0 && !ninja)
+            {
+
+                if (Pbox.Location.Y > 470 && raz > 0)
+                {
+                    raz = 0;
+                }
+                else if (Pbox.Location.Y < 10 && raz < 0)
+                {
+                    raz = 0;
+                }
+                Pbox.Location = new Point(f.ClientSize.Width - (Pbox.Width + Pbox.Width / 2), Pbox.Location.Y + raz);
+            }
+            else if(ninja)
+            {
+                if (Pbox.Location.Y > 470 && raz > 0)
+                {
+                    raz = 0;
+                }
+                else if (Pbox.Location.Y < 10 && raz < 0)
+                {
+                    raz = 0;
+                }
+                Pbox.Location = new Point(f.ClientSize.Width - (Pbox.Width + Pbox.Width / 2), Pbox.Location.Y + raz);
+            }
+        } - движење на ботот: Оваа функција го дефинира движењето на ботот кога играме Single Player.Функцијата прима 5 аргументи, Точката сегашна, у-координата на претходната позиција , брзината на топката и топчето. Најпрво генерираме еден рандом број кој произволно е земен да биде во опсег од 0 до 25. Имаме променлива raz која ја ставаме да биде разликата помеѓу сегашната у-координата и претходната. Доколку бројот кој го генериравме рандом биде под 5 тогаш оваа разлика станува нула и со тоа поместувањето на палката во овој gameTick ќе биде нула. Тоа ни овозможува доколку имаме среќа и знаење да го победиме ботот. Кодот под ова вклучува flag само за да провериме доколку е нинџа мод  ботот да биде непобедлив.
 ![Ninja mod](http://s1.postimg.org/l9toy8fr3/pivo.png)
 
-* void player2Movement(KeyEventArgs e) - движење при избор на "TwoPlayer" мод од менито. Овој метод реагира на одредени копчиња притиснати од тастатура, односно W и S доколку сакаме да ја движиме плавата палка , т.е. палката од лево на екранот и  UP , DOWN доколку сакаме да ја придвижуваме црвената палка односно палката од десно. Во овој метод има 4 if -a кој едноставно реагираат на стиснатите копчиња кои ги наведовме погоре.
+* vpublic void player2Movement(KeyEventArgs e)  
+        {
+            if (e.KeyCode == Keys.W)
+            {
+                if (Pbox.Location.Y >= Pbox.Height / 2 - 35 && Pbox.Location.Y <= f.ClientSize.Height - Pbox.Height / 2 - 40)
+                {
+                    int playerX = Pbox.Width / 2;
+                    int playerY = Pbox.Location.Y - 20;
+                    Pbox.Location = new Point(playerX, playerY);
+                }
+            }
+            if (e.KeyCode == Keys.S)
+            {
+                if (Pbox.Location.Y >= Pbox.Height / 2 - 40 && Pbox.Location.Y <= f.ClientSize.Height - Pbox.Height / 2 - 60)
+                {
+                    int playerX = Pbox.Width / 2;
+                    int playerY = Pbox.Location.Y + 20;
+                    Pbox.Location = new Point(playerX, playerY);
+                }
+            }
+            if (e.KeyCode == Keys.Up)
+            {
+                if (Pbox.Location.Y >= Pbox.Height / 2 - 35 && Pbox.Location.Y <= f.ClientSize.Height - Pbox.Height / 2 - 40)
+                {
+                    int playerY = Pbox.Location.Y - 20;
+                    Pbox.Location = new Point(Pbox.Location.X, playerY);
+                }
+            }
+            if (e.KeyCode == Keys.Down)
+            {
+                if (Pbox.Location.Y >= Pbox.Height / 2 - 40 && Pbox.Location.Y <= f.ClientSize.Height - Pbox.Height / 2 - 60)
+                {
+
+                    int playerY = Pbox.Location.Y + 20;
+                    Pbox.Location = new Point(Pbox.Location.X, playerY);
+                }
+            }
+           
+        } - движење при избор на "TwoPlayer" мод од менито. Овој метод реагира на одредени копчиња притиснати од тастатура, односно W и S доколку сакаме да ја движиме плавата палка , т.е. палката од лево на екранот и  UP , DOWN доколку сакаме да ја придвижуваме црвената палка односно палката од десно. Во овој метод има 4 if -a кој едноставно реагираат на стиснатите копчиња кои ги наведовме погоре.
 
 ### Класата Topka ги содржи следните атрибути:
 * int SpeedX - брзина на топката по X-оската
